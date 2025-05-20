@@ -1,0 +1,13 @@
+name: Github action
+run-name: Performing Task 2
+
+on: [push]
+
+env:
+  envvar: ${{ vars.PROJECT_VAR }}
+  
+jobs:
+  basic_workflow:
+    runs-on: ubuntu-latest
+    steps:
+        - run: echo "A Job created for basic workflow with a message     $envvar"
