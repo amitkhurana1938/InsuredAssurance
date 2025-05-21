@@ -15,12 +15,14 @@ pipeline {
             sh 'maven clean package'
         }
 	  }
-	  stage("Test") {
+	  stage('Test') {
 	      steps {
+		echo 'testing done'
         }
 	  }
-	  stage("Deploy") {
+	  stage('Deploy') {
 	      steps {
+		echo 'Deploy done'
         }
 	  }
 }
