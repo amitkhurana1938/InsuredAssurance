@@ -2,25 +2,25 @@ pipeline {
   agent any
 
   tools {
-    maven "mvn3.9.8"
+      maven "mvn3.9.8"
  }
  stages {
-	  stage('Checkout') {
+     stage('Checkout') {
         steps {
           git 'https://github.com/amitkhurana1938/InsuredAssurance.git'
         }
 	  }
-	  stage('Build') {
-	      steps {
-            sh 'maven clean package'
-        }
-	  }
-	  stage('Test') {
-	      steps {
+     stage('Build'){
+	 steps{
+            sh 'mvn clean package'
+          }
+     }
+     stage('Test') {
+         steps {
 		echo 'testing done'
-        }
-	  }
-	  stage('Deploy') {
+         }
+     }
+       stage('Deploy') {
 	      steps {
 		echo 'Deploy done'
         }
