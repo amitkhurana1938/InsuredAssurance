@@ -1,1 +1,1 @@
-Insured Assurance 2
+Insured Assurance
