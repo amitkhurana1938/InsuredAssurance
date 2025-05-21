@@ -1,1 +1,35 @@
+pipeline {
+  agent any
 
+  tools {
+    maven "mvn3.9.8"
+ }
+ stages {
+	  stage('Checkout') {
+        steps {
+          git 'https://github.com/amitkhurana1938/InsuredAssurance.git'
+        }
+	  }
+	  stage('Build') {
+	      steps {
+            sh 'maven clean package'
+        }
+	  }
+	  stage("Test") {
+	      steps {
+        }
+	  }
+	  stage("Deploy") {
+	      steps {
+        }
+	  }
+}
+post {
+  success {
+  echo 'Job executed'
+}
+  failure {
+   echo 'Failed'
+}
+}
+}
