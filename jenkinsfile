@@ -9,9 +9,12 @@ pipeline {
     stages {
         stage('Checkout'){
             steps{
-                //Checkout the source repo from scm
-                branch 'main',
-                git 'https://github.com/amitkhurana1938/InsuredAssurance.git'
+                 script {
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: 'refs/heads/main']],
+                        userRemoteConfigs: [[url: 'https://github.com/amitkhurana1938/InsuredAssurance.git']]
+                    ])
+                }
             }
         }
         stage('Build'){
