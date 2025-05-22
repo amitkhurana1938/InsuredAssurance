@@ -18,5 +18,5 @@ jobs:
 
       - name: Trigger Jenkins job
         run: |
-          curl -X POST http://localhost:8080/job/InsuredPipeline/build \
+          curl -X POST https://cc2b-43-205-138-247.ngrok-free.app/job/InsuredPipeline/build \
             --user "admin:${{ secrets.JENKINS_TOKEN }}"
