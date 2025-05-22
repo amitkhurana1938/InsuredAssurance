@@ -1,37 +1,46 @@
 pipeline {
-  agent any
+    agent any
+    
+    tools {
+        //To specify the maven to use
+        maven "mvn3.9.8"
+    }
+    
+    stages {
+        stage('Checkout'){
+            steps{
+                //Checkout the source repo from scm
+                git 'https://github.com/amitkhurana1938/InsuredAssurance.git'
+            }
+        }
+        stage('Build'){
+            steps{
+                //Use maven to build the project
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test'){
+            steps{
+                //Run tests if applicable
+                echo 'test done'
+            }
+        }
+	stage('Deploy'){
+            steps{
+                //Run tests if applicable
+                echo 'deploy done'
+            }
+        }
+    }
+    post{
+        success{
+            //This will be executed if the pipeline execution is successful
+            echo 'Pipeline executed successfully!'
+        }
+        failure{
+            //This will be executed if the pipeline execution fails
+            echo 'Pipeline failed!'
+        }
+    }
+}
 
-  tools {
-      maven "mvn3.9.8"
- }
- stages {
-     stage('Checkout') {
-        steps {
-          git 'https://github.com/amitkhurana1938/InsuredAssurance.git'
-        }
-	  }
-     stage('Build'){
-	 steps{
-            sh 'mvn clean package'
-          }
-     }
-     stage('Test') {
-         steps {
-		echo 'testing done1'
-         }
-     }
-       stage('Deploy') {
-	      steps {
-		echo 'Deploy done'
-        }
-	  }
-}
-post {
-  success {
-  echo 'Job executed'
-}
-  failure {
-   echo 'Failed'
-}
-}
-}
