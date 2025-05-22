@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    
+    tools {
+        //To specify the maven to use
+        maven "mvn3.9.8"
+    }
+    
+    stages {
+        stage('Checkout'){
+            steps{
+                 script {
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: 'refs/heads/main']],
+                        userRemoteConfigs: [[url: 'https://github.com/amitkhurana1938/InsuredAssurance.git']]
+                    ])
+                }
+            }
+        }
+        stage('Build'){
+            steps{
+                //Use maven to build the project
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test'){
+            steps{
+                //Run tests if applicable
+                echo 'test done'
+            }
+        }
+	      stage('Deploy'){
+            steps{
+                //Run tests if applicable
+                echo 'deploy done'
+            }
+        }
+      stage('Validate'){
+            steps{
+                //Run tests if applicable
+                echo 'validate done'
+            }
+        }
+    }
+    post{
+        success{
+            //This will be executed if the pipeline execution is successful
+            echo 'Pipeline executed successfully!'
+        }
+        failure{
+            //This will be executed if the pipeline execution fails
+            echo 'Pipeline failed!'
+        }
+    }
+}
