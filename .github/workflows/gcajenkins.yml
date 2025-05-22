@@ -1,0 +1,22 @@
+name: CI workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Trigger Jenkins job
+        run: |
+          curl -X POST http://localhost:8080/job/InsuredPipeline/build \
+            --user "admin:${{ secrets.JENKINS_TOKEN }}"
