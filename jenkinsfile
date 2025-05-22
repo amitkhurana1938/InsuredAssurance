@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout'){
             steps{
                 //Checkout the source repo from scm
-                branches: [[name: 'refs/heads/main']],
+                branches: 'refs/heads/main',
                 git 'https://github.com/amitkhurana1938/InsuredAssurance.git'
             }
         }
